@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Union du cœur · Association solidaire à Massy</title>
+  <meta name="description" content="Union du cœur organise des maraudes à Massy et alentours : repas, produits d'hygiène, vêtements chauds et écoute pour les personnes sans abri et en difficulté. Rejoignez-nous ou faites un don.">
+  <meta name="theme-color" content="#0e2740">
+
+  <!-- Aperçu quand on partage le lien (Snap, WhatsApp, etc.) -->
+  <meta property="og:title" content="Union du cœur · Ensemble, créons l'espoir">
+  <meta property="og:description" content="Maraudes solidaires à Massy : repas, chaleur et écoute pour les personnes à la rue. Rejoignez-nous.">
+  <meta property="og:image" content="https://unionducoeur.github.io/logo.png">
+  <meta property="og:url" content="https://unionducoeur.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --nuit: #0e2740;
+      --nuit-2: #143657;
+      --ocean: #1d5b7a;
+      --menthe: #3cc6a8;
+      --orange: #f2992e;
+      --orange-fonce: #d97b10;
+      --papier: #fbf6ee;
+      --papier-2: #f3eadb;
+      --encre: #1b2533;
+      --gris: #5b6675;
+      --blanc: #ffffff;
+      --rayon: 22px;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --max: 1160px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--encre);
+      background: var(--papier);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+    p { margin: 0; }
+    .wrap { width: min(var(--max), 100% - 32px); margin-inline: auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* ---------- Boutons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: .55em;
+      font: 600 16px/1 var(--sans);
+      padding: 15px 24px; border-radius: 999px;
+      text-decoration: none; border: 2px solid transparent;
+      cursor: pointer; transition: transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: 3px solid var(--menthe); outline-offset: 3px; }
+    .btn-orange { background: var(--orange); color: var(--nuit); }
+    .btn-orange:hover { background: #ffa940; }
+    .btn-ligne { border-color: rgba(255,255,255,.55); color: var(--blanc); }
+    .btn-ligne:hover { border-color: var(--blanc); background: rgba(255,255,255,.08); }
+    .btn-nuit { background: var(--nuit); color: var(--blanc); }
+    .btn-nuit:hover { background: var(--nuit-2); }
+    .btn-snap { background: #fffc00; color: #111; }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+
+    /* ---------- En-tête ---------- */
+    .entete {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(14, 39, 64, .92);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      color: var(--blanc);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .entete .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .marque { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .marque img { width: 44px; height: 44px; }
+    .marque span { font-family: var(--serif); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    .marque em { font-style: italic; color: var(--orange); font-weight: 400; }
+    .menu { display: flex; align-items: center; gap: 28px; }
+    .menu a:not(.btn) { text-decoration: none; font-weight: 500; font-size: 15.5px; opacity: .85; transition: opacity .2s; }
+    .menu a:not(.btn):hover { opacity: 1; }
+    .menu .btn { padding: 11px 20px; font-size: 15px; }
+    .burger { display: none; background: none; border: 0; color: inherit; padding: 8px; cursor: pointer; }
+    .burger svg { width: 28px; height: 28px; }
+
+    @media (max-width: 860px) {
+      .burger { display: block; }
+      .menu {
+        position: absolute; top: 72px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--nuit); padding: 8px 16px 20px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        display: none;
+      }
+      .menu.ouvert { display: flex; }
+      .menu a:not(.btn) { padding: 14px 4px; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .menu .btn { margin-top: 14px; justify-content: center; }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 85% 20%, rgba(60,198,168,.18), transparent 60%),
+        radial-gradient(900px 500px at 10% 110%, rgba(242,153,46,.16), transparent 60%),
+        var(--nuit);
+      color: var(--blanc);
+      padding: 72px 0 120px;
+    }
+    .etoiles { position: absolute; inset: 0; pointer-events: none; opacity: .7; }
+    .hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+    .surtitre {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--menthe);
+    }
+    .surtitre::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    .hero h1 { font-size: clamp(44px, 6.4vw, 82px); margin: 22px 0 24px; font-weight: 600; }
+    .hero h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+    .hero .intro { font-size: clamp(17px, 1.6vw, 19.5px); color: rgba(255,255,255,.82); max-width: 33em; }
+    .hero .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+
+    /* La petite planète et son orbite */
+    .planete { position: relative; width: min(440px, 100%); aspect-ratio: 1; margin-inline: auto; }
+    .planete img {
+      position: absolute; inset: 14%; width: 72%; height: 72%;
+      border-radius: 50%;
+      box-shadow: 0 0 0 10px rgba(255,255,255,.04), 0 30px 80px rgba(0,0,0,.45), 0 0 120px rgba(60,198,168,.25);
+      animation: flotte 7s ease-in-out infinite;
+    }
+    .orbite {
+      position: absolute; inset: 0; border-radius: 50%;
+      border: 1.5px dashed rgba(255,255,255,.18);
+      animation: tourne 60s linear infinite;
+    }
+    .orbite.o2 { inset: 6%; border-style: solid; border-color: rgba(60,198,168,.15); animation-duration: 38s; animation-direction: reverse; }
+    .orbite i {
+      position: absolute; width: 14px; height: 14px; border-radius: 50%;
+      background: var(--orange); box-shadow: 0 0 18px var(--orange);
+      top: 50%; left: -7px; margin-top: -7px;
+    }
+    .orbite.o2 i { background: var(--menthe); box-shadow: 0 0 16px var(--menthe); width: 10px; height: 10px; left: auto; right: -5px; margin-top: -5px; }
+    @keyframes tourne { to { transform: rotate(360deg); } }
+    @keyframes flotte { 50% { transform: translateY(-10px); } }
+
+    .vague { position: absolute; bottom: -1px; left: 0; width: 100%; height: 80px; color: var(--papier); }
+
+    @media (max-width: 860px) {
+      .hero { padding: 40px 0 100px; }
+      .hero .wrap { grid-template-columns: 1fr; gap: 24px; }
+      .planete { width: min(300px, 80%); order: -1; }
+    }
+
+    /* ---------- Sections ---------- */
+    section { padding: 96px 0; }
+    .entete-section { max-width: 680px; margin-bottom: 52px; }
+    .entete-section .surtitre { color: var(--ocean); }
+    .entete-section h2 { font-size: clamp(34px, 4.2vw, 52px); margin: 14px 0 16px; }
+    .entete-section h2 em { font-style: italic; font-weight: 400; color: var(--orange-fonce); }
+    .entete-section p { color: var(--gris); font-size: 18px; }
+    @media (max-width: 860px) { section { padding: 72px 0; } }
+
+    /* Actions */
+    .cartes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .carte {
+      background: var(--blanc); border-radius: var(--rayon); padding: 34px 30px;
+      border: 1px solid rgba(14,39,64,.07);
+      box-shadow: 0 1px 0 rgba(14,39,64,.04), 0 18px 40px -24px rgba(14,39,64,.25);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .carte:hover { transform: translateY(-4px); box-shadow: 0 1px 0 rgba(14,39,64,.04), 0 28px 50px -24px rgba(14,39,64,.35); }
+    .icone {
+      width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center;
+      background: #fdeedb; color: var(--orange-fonce); margin-bottom: 22px;
+    }
+    .carte:nth-child(2) .icone { background: #ddf5ee; color: #1e8f78; }
+    .carte:nth-child(3) .icone { background: #e2ecf4; color: var(--ocean); }
+    .icone svg { width: 28px; height: 28px; }
+    .carte h3 { font-size: 24px; margin-bottom: 10px; }
+    .carte p { color: var(--gris); }
+    @media (max-width: 860px) { .cartes { grid-template-columns: 1fr; } }
+
+    /* Déroulé d'une maraude */
+    .deroule { background: var(--papier-2); }
+    .etapes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: etape; position: relative; }
+    .etapes::before {
+      content: ""; position: absolute; top: 27px; left: 28px; right: calc(25% - 28px); height: 2px;
+      background: repeating-linear-gradient(90deg, var(--ocean) 0 8px, transparent 8px 16px); opacity: .35;
+    }
+    .etapes li { position: relative; padding-right: 24px; counter-increment: etape; }
+    .etapes li::before {
+      content: counter(etape);
+      display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+      background: var(--nuit); color: var(--blanc);
+      font: 600 22px/1 var(--serif); margin-bottom: 22px; position: relative;
+      box-shadow: 0 0 0 8px var(--papier-2);
+    }
+    .etapes li:last-child::before { background: var(--orange); color: var(--nuit); }
+    .etapes h3 { font-size: 21px; margin-bottom: 8px; }
+    .etapes p { color: var(--gris); font-size: 16px; }
+    @media (max-width: 860px) {
+      .etapes { grid-template-columns: 1fr; gap: 30px; }
+      .etapes::before { top: 28px; bottom: 28px; left: 27px; right: auto; width: 2px; height: auto;
+        background: repeating-linear-gradient(180deg, var(--ocean) 0 8px, transparent 8px 16px); }
+      .etapes li { padding: 0 0 0 80px; min-height: 56px; }
+      .etapes li::before { position: absolute; left: 0; top: 0; margin: 0; }
+    }
+
+    /* Qui sommes-nous */
+    .apropos .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .citation {
+      position: relative; background: var(--nuit); color: var(--blanc); margin: 0;
+      border-radius: 32px; padding: 56px 48px; overflow: hidden;
+    }
+    .citation::after {
+      content: ""; position: absolute; width: 260px; height: 260px; right: -80px; bottom: -80px;
+      border-radius: 50%; background: url("logo.png") center/cover; opacity: .16;
+    }
+    .citation blockquote { margin: 0; font-family: var(--serif); font-size: clamp(26px, 2.8vw, 34px); line-height: 1.25; position: relative; z-index: 1; }
+    .citation blockquote em { color: var(--orange); }
+    .citation p { margin-top: 24px; color: rgba(255,255,255,.7); font-size: 15px; position: relative; z-index: 1; }
+    .texte-apropos p + p { margin-top: 18px; }
+    .texte-apropos p { color: #3a4554; font-size: 18px; }
+    .valeurs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .valeurs span {
+      padding: 9px 16px; border-radius: 999px; font-weight: 600; font-size: 15px;
+      background: var(--blanc); border: 1px solid rgba(14,39,64,.1);
+    }
+    .valeurs span::before { content: "●"; color: var(--orange); margin-right: 8px; font-size: 10px; vertical-align: 2px; }
+    @media (max-width: 860px) { .apropos .wrap { grid-template-columns: 1fr; gap: 40px; } .citation { padding: 40px 28px; } }
+
+    /* Prochaine maraude */
+    .rdv-zone { padding-top: 0; }
+    .rdv {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 36px; align-items: center;
+      background: linear-gradient(120deg, var(--orange) 0%, #f7b25a 100%);
+      color: var(--nuit); border-radius: 32px; padding: 40px 44px;
+    }
+    .rdv .date {
+      background: var(--nuit); color: var(--blanc); border-radius: 22px;
+      width: 120px; height: 120px; display: grid; place-content: center; text-align: center;
+    }
+    .rdv .date b { display: block; font: 700 42px/1 var(--serif); }
+    .rdv .date small { font-size: 14px; text-transform: uppercase; letter-spacing: .1em; opacity: .8; }
+    .rdv h2 { font-size: clamp(26px, 3vw, 36px); margin-bottom: 8px; }
+    .rdv p { font-size: 17px; }
+    @media (max-width: 860px) { .rdv { grid-template-columns: 1fr; text-align: left; padding: 32px 26px; gap: 22px; } .rdv .btn { justify-content: center; } }
+
+    /* Agir */
+    .agir { background: var(--nuit); color: var(--blanc); position: relative; overflow: hidden; }
+    .agir .entete-section .surtitre { color: var(--menthe); }
+    .agir .entete-section p { color: rgba(255,255,255,.75); }
+    .agir .entete-section h2 em { color: var(--orange); }
+    .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .option {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--rayon); padding: 34px 30px; display: flex; flex-direction: column;
+    }
+    .option.vedette { background: var(--blanc); color: var(--encre); border-color: transparent; }
+    .option .num { font: italic 400 15px/1 var(--serif); color: var(--menthe); margin-bottom: 16px; }
+    .option.vedette .num { color: var(--orange-fonce); }
+    .option h3 { font-size: 26px; margin-bottom: 12px; }
+    .option > p { color: rgba(255,255,255,.75); }
+    .option.vedette > p { color: var(--gris); }
+    .option ul { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .option li { font-size: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.08); }
+    .option .bas { margin-top: auto; padding-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .option .bas .btn { justify-content: center; }
+    .option .note { font-size: 13.5px; color: var(--gris); text-align: center; }
+    @media (max-width: 960px) { .options { grid-template-columns: 1fr; } }
+
+    /* Contact */
+    .contact .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+    .contact h2 { font-size: clamp(34px, 4.2vw, 52px); margin: 14px 0 16px; }
+    .contact h2 em { font-style: italic; font-weight: 400; color: var(--orange-fonce); }
+    .contact .surtitre { color: var(--ocean); }
+    .contact p { color: var(--gris); font-size: 18px; }
+    .canaux { display: grid; gap: 14px; }
+    .canal {
+      display: flex; align-items: center; gap: 18px; text-decoration: none;
+      background: var(--blanc); border-radius: 18px; padding: 20px 22px;
+      border: 1px solid rgba(14,39,64,.08); transition: transform .2s, border-color .2s;
+    }
+    .canal:hover { transform: translateX(4px); border-color: var(--orange); }
+    .canal .ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; flex: none; }
+    .canal .ic svg { width: 24px; height: 24px; }
+    .canal b { display: block; font-size: 17px; }
+    .canal small { color: var(--gris); font-size: 15px; word-break: break-all; }
+    @media (max-width: 860px) { .contact .wrap { grid-template-columns: 1fr; } }
+
+    /* Pied de page */
+    .pied { background: #0a1d30; color: rgba(255,255,255,.7); padding: 48px 0 36px; font-size: 15px; }
+    .pied .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center; }
+    .pied .marque { color: var(--blanc); }
+    .pied nav { display: flex; flex-wrap: wrap; gap: 22px; }
+    .pied nav a { text-decoration: none; }
+    .pied nav a:hover { color: var(--blanc); }
+    .pied .bas { width: 100%; border-top: 1px solid rgba(255,255,255,.08); padding-top: 22px; margin-top: 8px; font-size: 14px; }
+
+    /* Message "lien bientôt disponible" */
+    .toast {
+      position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px);
+      background: var(--nuit); color: var(--blanc); padding: 14px 22px; border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.3); font-size: 15px; opacity: 0; pointer-events: none;
+      transition: opacity .25s, transform .25s; z-index: 100; max-width: calc(100% - 32px); text-align: center;
+    }
+    .toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+    /* Apparition au défilement */
+    .apparait { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .apparait.vu { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .orbite, .planete img { animation: none; }
+      .apparait { opacity: 1; transform: none; transition: none; }
+      .btn, .carte, .canal { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       PARAMÈTRES À MODIFIER (une seule fois)
+       Remplace les 3 liens ci-dessous dans tout le fichier
+       avec Ctrl+F / Cmd+F :
+       - TON_PSEUDO_SNAP  → ton pseudo Snapchat
+       - LIEN_PAYPAL      → le lien de votre bouton de don PayPal
+       - unionducoeur@proton.me (déjà rempli)
+       ========================================================= -->
+
+  <header class="entete">
+    <div class="wrap">
+      <a class="marque" href="#accueil" aria-label="Union du cœur, retour à l'accueil">
+        <img src="logo.png" alt="" width="44" height="44">
+        <span>Union du <em>cœur</em></span>
+      </a>
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="menu" id="menu" aria-label="Navigation principale">
+        <a href="#actions">Nos actions</a>
+        <a href="#apropos">Qui sommes-nous</a>
+        <a href="#agir">Agir</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-orange" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">Faire un don</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="accueil">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <svg class="etoiles" aria-hidden="true" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+        <g fill="#fff">
+          <circle cx="80" cy="90" r="1.6"/><circle cx="240" cy="40" r="1"/><circle cx="420" cy="120" r="1.4"/>
+          <circle cx="610" cy="60" r="1"/><circle cx="760" cy="150" r="1.8"/><circle cx="980" cy="70" r="1.2"/>
+          <circle cx="1130" cy="190" r="1.5"/><circle cx="1050" cy="420" r="1"/><circle cx="150" cy="380" r="1.2"/>
+          <circle cx="330" cy="560" r="1.6"/><circle cx="560" cy="470" r="1"/><circle cx="880" cy="600" r="1.3"/>
+          <circle cx="40" cy="620" r="1"/><circle cx="700" cy="300" r="1"/><circle cx="1170" cy="560" r="1.4"/>
+        </g>
+        <g fill="#fff" opacity=".9">
+          <path d="M520 210l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/>
+          <path d="M1090 300l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z"/>
+          <path d="M200 250l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>
+        </g>
+      </svg>
+
+      <div class="wrap">
+        <div>
+          <span class="surtitre">Association solidaire · Massy (91)</span>
+          <h1>Ensemble, créons <em>l'espoir.</em></h1>
+          <p class="intro">
+            Union du cœur, c'est un groupe de collègues et d'habitants qui ont décidé de ne plus passer à côté.
+            Nous organisons des maraudes pour apporter des repas, de quoi se tenir chaud et surtout un moment d'écoute
+            aux personnes sans abri et en difficulté.
+          </p>
+          <div class="actions">
+            <a class="btn btn-orange" href="#agir">
+              Rejoindre une maraude
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ligne" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">Faire un don</a>
+          </div>
+        </div>
+
+        <div class="planete" aria-hidden="true">
+          <div class="orbite"><i></i></div>
+          <div class="orbite o2"><i></i></div>
+          <img src="logo.png" alt="">
+        </div>
+      </div>
+
+      <svg class="vague" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="currentColor" d="M0 48c160 26 320 32 480 18S800 14 960 14s320 30 480 46v20H0z"/>
+      </svg>
+    </section>
+
+    <!-- ================= NOS ACTIONS ================= -->
+    <section id="actions">
+      <div class="wrap">
+        <div class="entete-section apparait">
+          <span class="surtitre">Nos actions</span>
+          <h2>Un repas, un sourire, <em>une présence.</em></h2>
+          <p>Sur le terrain, on apporte ce qui manque au quotidien, sans jugement et dans le respect de chacun.</p>
+        </div>
+
+        <div class="cartes">
+          <article class="carte apparait">
+            <div class="icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h16a8 8 0 0 1-16 0z"/><path d="M2 13h20"/><path d="M9 4c0 1.5 1.5 1.5 1.5 3S9 8.5 9 10M14 4c0 1.5 1.5 1.5 1.5 3S14 8.5 14 10"/></svg>
+            </div>
+            <h3>Maraudes alimentaires</h3>
+            <p>Repas, boissons chaudes et denrées distribués directement dans la rue, là où les gens se trouvent.</p>
+          </article>
+
+          <article class="carte apparait">
+            <div class="icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l1 4H7z"/><path d="M6 7h12l-1 14H7z"/><path d="M10 11v6M14 11v6"/></svg>
+            </div>
+            <h3>Hygiène & chaleur</h3>
+            <p>Kits d'hygiène, vêtements chauds, chaussettes, couvertures : les essentiels pour tenir et garder sa dignité.</p>
+          </article>
+
+          <article class="carte apparait">
+            <div class="icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
+            </div>
+            <h3>Écoute & lien</h3>
+            <p>Prendre le temps de discuter, d'écouter et d'orienter vers les bonnes structures quand c'est possible.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DÉROULÉ ================= -->
+    <section class="deroule">
+      <div class="wrap">
+        <div class="entete-section apparait">
+          <span class="surtitre">Comment ça se passe</span>
+          <h2>Une maraude, <em>en quatre temps.</em></h2>
+          <p>Pas besoin d'expérience : on vous accueille, on vous explique, et on part ensemble.</p>
+        </div>
+
+        <ol class="etapes">
+          <li class="apparait">
+            <h3>La collecte</h3>
+            <p>On rassemble les dons : denrées, vêtements, produits d'hygiène.</p>
+          </li>
+          <li class="apparait">
+            <h3>La préparation</h3>
+            <p>On prépare les repas et les sacs, en équipe et dans la bonne humeur.</p>
+          </li>
+          <li class="apparait">
+            <h3>La tournée</h3>
+            <p>On part à la rencontre des personnes à la rue, par petits groupes.</p>
+          </li>
+          <li class="apparait">
+            <h3>L'échange</h3>
+            <p>On prend le temps de parler, d'écouter et de revenir la fois suivante.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= QUI SOMMES-NOUS ================= -->
+    <section class="apropos" id="apropos">
+      <div class="wrap">
+        <div class="texte-apropos apparait">
+          <div class="entete-section" style="margin-bottom:28px">
+            <span class="surtitre">Qui sommes-nous</span>
+            <h2>Des collègues, <em>devenus une équipe.</em></h2>
+          </div>
+          <p>
+            Union du cœur est née entre collègues, d'une envie simple : agir concrètement pour celles et ceux
+            qui vivent dans la rue, juste à côté de chez nous.
+          </p>
+          <p>
+            Aujourd'hui, l'association rassemble des personnes de tous horizons, de tous âges et de toutes origines.
+            Ce qui nous unit, c'est la conviction que chacun mérite d'être vu, écouté et respecté.
+          </p>
+          <div class="valeurs">
+            <span>Dignité</span>
+            <span>Solidarité</span>
+            <span>Mixité</span>
+            <span>Proximité</span>
+          </div>
+        </div>
+
+        <figure class="citation apparait">
+          <blockquote>« L'indifférence est le plus grand froid de la rue. Nous, on a choisi <em>d'y apporter un peu de chaleur.</em> »</blockquote>
+          <p>L'équipe d'Union du cœur</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= PROCHAINE MARAUDE =================
+         À MODIFIER avant chaque maraude : le jour, le mois,
+         la phrase de description.
+    ======================================================= -->
+    <section class="rdv-zone">
+      <div class="wrap">
+        <div class="rdv apparait">
+          <div class="date">
+            <b>??</b>
+            <small>Bientôt</small>
+          </div>
+          <div>
+            <h2>Prochaine maraude</h2>
+            <p>La date sera annoncée très bientôt. Suivez-nous sur Snapchat pour être prévenu et rejoindre l'équipe.</p>
+          </div>
+          <a class="btn btn-nuit" href="https://www.snapchat.com/add/TON_PSEUDO_SNAP" target="_blank" rel="noopener" data-lien="snap">Être prévenu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AGIR ================= -->
+    <section class="agir" id="agir">
+      <div class="wrap">
+        <div class="entete-section apparait">
+          <span class="surtitre">Agir avec nous</span>
+          <h2>Chacun peut donner <em>à sa façon.</em></h2>
+          <p>Un peu de temps, quelques produits ou un don en ligne : tout compte, vraiment.</p>
+        </div>
+
+        <div class="options">
+          <div class="option apparait">
+            <span class="num">01</span>
+            <h3>Devenir bénévole</h3>
+            <p>Rejoignez une maraude, même une seule fois. On a toujours besoin de bras, de voitures et de bonne humeur.</p>
+            <div class="bas">
+              <a class="btn btn-snap" href="https://www.snapchat.com/add/TON_PSEUDO_SNAP" target="_blank" rel="noopener" data-lien="snap">Nous écrire sur Snapchat</a>
+            </div>
+          </div>
+
+          <div class="option apparait">
+            <span class="num">02</span>
+            <h3>Donner des produits</h3>
+            <p>Vos dons matériels repartent directement sur le terrain lors des maraudes.</p>
+            <ul>
+              <li>Conserves</li>
+              <li>Eau & boissons</li>
+              <li>Gâteaux secs</li>
+              <li>Produits d'hygiène</li>
+              <li>Protections hygiéniques</li>
+              <li>Chaussettes</li>
+              <li>Couvertures</li>
+              <li>Vêtements chauds</li>
+            </ul>
+            <div class="bas">
+              <a class="btn btn-ligne" href="#contact">Organiser un dépôt</a>
+            </div>
+          </div>
+
+          <div class="option vedette apparait">
+            <span class="num">03</span>
+            <h3>Faire un don</h3>
+            <p>Chaque euro sert à acheter des repas, des produits d'hygiène et du matériel pour les maraudes.</p>
+            <div class="bas">
+              <a class="btn btn-orange" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.5 1.1 4.4 2.6h2C13.9 6.1 15.4 5 17.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg>
+                Donner via PayPal
+              </a>
+              <span class="note">Paiement sécurisé, par carte ou compte PayPal.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="apparait">
+          <span class="surtitre">Contact</span>
+          <h2>Une question ? <em>Écrivez-nous.</em></h2>
+          <p>Que vous souhaitiez participer, faire un don, proposer un partenariat ou simplement en savoir plus, on vous répond avec plaisir.</p>
+        </div>
+
+        <div class="canaux apparait">
+          <a class="canal" href="mailto:unionducoeur@proton.me">
+            <span class="ic" style="background:#e2ecf4;color:var(--ocean)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span><b>E-mail</b><small>unionducoeur@proton.me</small></span>
+          </a>
+          <a class="canal" href="https://www.snapchat.com/add/TON_PSEUDO_SNAP" target="_blank" rel="noopener" data-lien="snap">
+            <span class="ic" style="background:#fffc00;color:#111">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+            </span>
+            <span><b>Snapchat</b><small>Suivez nos maraudes au quotidien</small></span>
+          </a>
+          <a class="canal" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">
+            <span class="ic" style="background:#fdeedb;color:var(--orange-fonce)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.5 1.1 4.4 2.6h2C13.9 6.1 15.4 5 17.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg>
+            </span>
+            <span><b>Soutenir l'association</b><small>Don en ligne via PayPal</small></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <div class="wrap">
+      <a class="marque" href="#accueil">
+        <img src="logo.png" alt="" width="44" height="44">
+        <span>Union du <em>cœur</em></span>
+      </a>
+      <nav aria-label="Liens du pied de page">
+        <a href="#actions">Nos actions</a>
+        <a href="#apropos">Qui sommes-nous</a>
+        <a href="#agir">Agir</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="bas">© <span id="annee">2026</span> Union du cœur · Massy, Essonne · Ensemble, créons l'espoir.</div>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Menu mobile
+    const burger = document.querySelector('.burger');
+    const menu = document.getElementById('menu');
+    burger.addEventListener('click', () => {
+      const ouvert = menu.classList.toggle('ouvert');
+      burger.setAttribute('aria-expanded', ouvert);
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('ouvert');
+      burger.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Année automatique dans le pied de page
+    document.getElementById('annee').textContent = new Date().getFullYear();
+
+    // Si un lien n'a pas encore été rempli, on affiche un petit message au lieu d'une page cassée
+    const toast = document.querySelector('.toast');
+    let minuteur;
+    document.querySelectorAll('[data-lien]').forEach(lien => {
+      const href = lien.getAttribute('href');
+      if (href.includes('LIEN_PAYPAL') || href.includes('TON_PSEUDO_SNAP')) {
+        lien.addEventListener('click', e => {
+          e.preventDefault();
+          toast.textContent = lien.dataset.lien === 'paypal'
+            ? 'Le lien de don arrive très bientôt. Merci pour votre générosité !'
+            : 'Notre Snapchat arrive très bientôt !';
+          toast.classList.add('visible');
+          clearTimeout(minuteur);
+          minuteur = setTimeout(() => toast.classList.remove('visible'), 3200);
+        });
+      }
+    });
+
+    // Apparition douce des blocs au défilement
+    const elements = document.querySelectorAll('.apparait');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entrees => {
+        entrees.forEach(en => { if (en.isIntersecting) { en.target.classList.add('vu'); obs.unobserve(en.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      elements.forEach(el => obs.observe(el));
+    } else {
+      elements.forEach(el => el.classList.add('vu'));
+    }
+  </script>
+</body>
+</html>
