@@ -261,6 +261,21 @@
     .rdv p { font-size: 17px; }
     @media (max-width: 860px) { .rdv { grid-template-columns: 1fr; text-align: left; padding: 32px 26px; gap: 22px; } .rdv .btn { justify-content: center; } }
 
+
+    /* Aperçu galerie */
+    .apercu { padding-top: 0; }
+    .apercu .tete-apercu { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 32px; }
+    .apercu .entete-section { margin-bottom: 0; }
+    .mosaique { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 14px; }
+    .mosaique a { border-radius: 18px; overflow: hidden; display: block; background: var(--papier-2); }
+    .mosaique a:first-child { grid-row: span 2; }
+    .mosaique img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .mosaique a:hover img { transform: scale(1.05); }
+    @media (max-width: 760px) {
+      .mosaique { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 140px 140px; }
+      .mosaique a:first-child { grid-column: span 2; grid-row: auto; }
+    }
+
     /* Agir */
     .agir { background: var(--nuit); color: var(--blanc); position: relative; overflow: hidden; }
     .agir .entete-section .surtitre { color: var(--menthe); }
@@ -356,6 +371,7 @@
       <nav class="menu" id="menu" aria-label="Navigation principale">
         <a href="#actions">Nos actions</a>
         <a href="#apropos">Qui sommes-nous</a>
+        <a href="galerie.html">Galerie</a>
         <a href="#agir">Agir</a>
         <a href="#contact">Contact</a>
         <a class="btn btn-orange" href="#agir">Nous aider</a>
@@ -530,6 +546,26 @@
       </div>
     </section>
 
+    <!-- ================= GALERIE (aperçu) ================= -->
+    <section class="apercu">
+      <div class="wrap">
+        <div class="tete-apercu apparait">
+          <div class="entete-section">
+            <span class="surtitre">En images</span>
+            <h2>Nos maraudes, <em>en vrai.</em></h2>
+          </div>
+          <a class="btn btn-nuit" href="galerie.html">Voir toutes les photos</a>
+        </div>
+        <div class="mosaique apparait">
+          <a href="galerie.html" aria-label="Voir la galerie"><img src="photos/sacs-1-mini.jpg" alt="Les sacs repas préparés par l'équipe" loading="lazy"></a>
+          <a href="galerie.html" aria-label="Voir la galerie"><img src="photos/beignets-mini.jpg" alt="Préparation des beignets maison" loading="lazy"></a>
+          <a href="galerie.html" aria-label="Voir la galerie"><img style="object-position:center 25%" src="photos/maraude-massy-mini.jpg" alt="L'équipe sur le terrain à Massy" loading="lazy"></a>
+          <a href="galerie.html" aria-label="Voir la galerie"><img src="photos/courses-1-mini.jpg" alt="Les courses pour la maraude" loading="lazy"></a>
+          <a href="galerie.html" aria-label="Voir la galerie"><img src="photos/sacs-depart-mini.jpg" alt="Sacs prêts pour le départ" loading="lazy"></a>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= AGIR ================= -->
     <section class="agir" id="agir">
       <div class="wrap">
@@ -626,6 +662,7 @@
       <nav aria-label="Liens du pied de page">
         <a href="#actions">Nos actions</a>
         <a href="#apropos">Qui sommes-nous</a>
+        <a href="galerie.html">Galerie</a>
         <a href="#agir">Agir</a>
         <a href="#contact">Contact</a>
       </nav>

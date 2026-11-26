@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie · Union du cœur</title>
+  <meta name="description" content="Les photos des maraudes d'Union du cœur à Massy : préparation des repas, collecte et distribution.">
+  <meta name="theme-color" content="#0e2740">
+  <meta property="og:title" content="Galerie · Union du cœur">
+  <meta property="og:description" content="Nos maraudes en images : préparation, collecte et distribution à Massy.">
+  <meta property="og:image" content="https://unionducoeur.github.io/photos/sacs-1.jpg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --nuit: #0e2740; --nuit-2: #143657; --ocean: #1d5b7a; --menthe: #3cc6a8;
+      --orange: #f2992e; --orange-fonce: #d97b10; --papier: #fbf6ee; --papier-2: #f3eadb;
+      --encre: #1b2533; --gris: #5b6675; --blanc: #fff;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font: 17px/1.6 var(--sans); color: var(--encre); background: var(--papier); -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    h1, h2 { font-family: var(--serif); font-weight: 600; line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+    p { margin: 0; }
+    .wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+
+    .btn { display: inline-flex; align-items: center; gap: .55em; font: 600 15px/1 var(--sans); padding: 11px 20px; border-radius: 999px; text-decoration: none; transition: transform .15s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-orange { background: var(--orange); color: var(--nuit); }
+
+    .entete { position: sticky; top: 0; z-index: 50; background: rgba(14,39,64,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--blanc); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .entete .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .marque { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .marque img { width: 44px; height: 44px; }
+    .marque span { font-family: var(--serif); font-size: 22px; font-weight: 600; }
+    .marque em { font-style: italic; color: var(--orange); font-weight: 400; }
+    .retour { color: rgba(255,255,255,.85); text-decoration: none; font-weight: 500; font-size: 15.5px; display: inline-flex; align-items: center; gap: 6px; }
+    .retour:hover { color: var(--blanc); }
+    .retour svg { width: 18px; height: 18px; }
+    @media (max-width: 520px) { .marque span { display: none; } }
+
+    .tete { background: var(--nuit); color: var(--blanc); padding: 56px 0 64px; }
+    .surtitre { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--menthe); }
+    .surtitre::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    .tete h1 { font-size: clamp(40px, 5.6vw, 68px); margin: 16px 0 14px; }
+    .tete h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+    .tete p { color: rgba(255,255,255,.78); max-width: 34em; font-size: 18px; }
+
+    .album { padding: 56px 0 24px; }
+    .album-titre { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 24px; }
+    .album-titre h2 { font-size: clamp(26px, 3vw, 34px); }
+    .album-titre span { color: var(--gris); font-size: 15px; }
+
+    .grille { columns: 3 280px; column-gap: 14px; }
+    .grille button {
+      display: block; width: 100%; margin: 0 0 14px; padding: 0; border: 0; background: var(--papier-2);
+      border-radius: 16px; overflow: hidden; cursor: zoom-in; break-inside: avoid; position: relative;
+    }
+    .grille button img { width: 100%; height: auto; transition: transform .4s ease; }
+    .grille button:hover img { transform: scale(1.04); }
+    .grille button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+    .grille figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 14px 12px; text-align: left;
+      color: #fff; font-size: 14.5px; font-weight: 500;
+      background: linear-gradient(transparent, rgba(10,25,45,.78));
+      opacity: 0; transition: opacity .25s;
+    }
+    .grille button:hover figcaption, .grille button:focus-visible figcaption { opacity: 1; }
+    @media (hover: none) { .grille figcaption { opacity: 1; } }
+
+    .appel { margin: 48px 0 88px; background: var(--papier-2); border-radius: 28px; padding: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+    .appel h2 { font-size: 26px; margin-bottom: 6px; }
+    .appel p { color: var(--gris); }
+
+    .pied { background: #0a1d30; color: rgba(255,255,255,.7); padding: 28px 0; font-size: 14px; }
+
+    /* ----- Visionneuse ----- */
+    .visio { position: fixed; inset: 0; z-index: 200; background: rgba(6,16,28,.96); display: none; }
+    .visio.ouverte { display: grid; grid-template-rows: auto 1fr auto; }
+    .visio-haut { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; color: rgba(255,255,255,.75); font-size: 15px; }
+    .visio-centre { position: relative; display: grid; place-items: center; min-height: 0; padding: 0 64px; touch-action: pan-y; }
+    .visio-centre img { max-width: 100%; max-height: calc(100vh - 150px); max-height: calc(100dvh - 150px); object-fit: contain; border-radius: 8px; user-select: none; -webkit-user-drag: none; }
+    .visio-bas { color: #fff; text-align: center; padding: 14px 18px 22px; font-size: 16px; min-height: 56px; }
+    .visio button { background: rgba(255,255,255,.1); color: #fff; border: 0; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; transition: background .2s; }
+    .visio button:hover { background: rgba(255,255,255,.22); }
+    .visio button:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+    .visio button svg { width: 24px; height: 24px; }
+    .fleche { position: absolute; top: 50%; transform: translateY(-50%); }
+    .fleche.prec { left: 10px; } .fleche.suiv { right: 10px; }
+    @media (max-width: 640px) { .visio-centre { padding: 0 8px; } .fleche { display: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="entete">
+    <div class="wrap">
+      <a class="marque" href="index.html">
+        <img src="logo.png" alt="" width="44" height="44">
+        <span>Union du <em>cœur</em></span>
+      </a>
+      <a class="retour" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        Retour au site
+      </a>
+    </div>
+  </header>
+
+  <section class="tete">
+    <div class="wrap">
+      <span class="surtitre">Galerie</span>
+      <h1>Nos maraudes <em>en images.</em></h1>
+      <p>Des courses à la distribution, un aperçu de ce qu'on fait ensemble sur le terrain à Massy.</p>
+    </div>
+  </section>
+
+  <main class="wrap" id="albums"></main>
+
+  <div class="wrap">
+    <div class="appel">
+      <div>
+        <h2>Envie de faire partie des prochaines photos ?</h2>
+        <p>Rejoignez l'équipe pour une maraude, même une seule fois.</p>
+      </div>
+      <a class="btn btn-orange" href="index.html#agir">Nous rejoindre</a>
+    </div>
+  </div>
+
+  <footer class="pied">
+    <div class="wrap">© <span id="annee">2026</span> Union du cœur · Massy, Essonne</div>
+  </footer>
+
+  <!-- Visionneuse plein écran -->
+  <div class="visio" role="dialog" aria-modal="true" aria-label="Photo en grand">
+    <div class="visio-haut">
+      <span class="compteur"></span>
+      <button class="fermer" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="visio-centre">
+      <button class="fleche prec" aria-label="Photo précédente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <img alt="">
+      <button class="fleche suiv" aria-label="Photo suivante">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="visio-bas"></div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       POUR AJOUTER DES PHOTOS
+       1. Dépose les photos dans le dossier "photos" du dépôt
+          (une version normale + une version "-mini" plus petite).
+       2. Ajoute une ligne { photo: "...", legende: "..." } ci-dessous.
+       Pour un nouvel album (une nouvelle maraude), copie un bloc
+       { titre: ..., date: ..., photos: [ ... ] } et place-le en
+       premier pour qu'il s'affiche en haut.
+       ========================================================== */
+    const albums = [
+      {
+        titre: "Nos premières maraudes",
+        date: "Massy",
+        photos: [
+          { photo: "courses-1",     legende: "Le coffre rempli : eau, farine, œufs et carottes" },
+          { photo: "beignets",      legende: "Préparation des beignets maison" },
+          { photo: "sacs-1",        legende: "Tous les sacs repas prêts à partir" },
+          { photo: "maraude-massy", legende: "L'équipe sur le terrain à Massy" },
+          { photo: "sacs-2",        legende: "Un sac par personne : repas, eau et couverts" },
+          { photo: "courses-2",     legende: "Les courses avant la préparation" },
+          { photo: "sacs-depart",   legende: "Derniers sacs avant le départ" },
+          { photo: "sacs-3",        legende: "Préparés avec soin, un par un" }
+        ]
+      }
+    ];
+
+    const conteneur = document.getElementById('albums');
+    const toutes = [];
+
+    albums.forEach(album => {
+      const sec = document.createElement('section');
+      sec.className = 'album';
+      sec.innerHTML = `<div class="album-titre"><h2></h2><span></span></div><div class="grille"></div>`;
+      sec.querySelector('h2').textContent = album.titre;
+      sec.querySelector('span').textContent = `${album.date} · ${album.photos.length} photo${album.photos.length > 1 ? 's' : ''}`;
+      const grille = sec.querySelector('.grille');
+      album.photos.forEach(p => {
+        const index = toutes.length;
+        toutes.push(p);
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', `Agrandir : ${p.legende}`);
+        b.innerHTML = `<img loading="lazy" alt=""><figcaption></figcaption>`;
+        b.querySelector('img').src = `photos/${p.photo}-mini.jpg`;
+        b.querySelector('img').alt = p.legende;
+        b.querySelector('figcaption').textContent = p.legende;
+        b.addEventListener('click', () => ouvrir(index));
+        grille.appendChild(b);
+      });
+      conteneur.appendChild(sec);
+    });
+
+    // Visionneuse
+    const visio = document.querySelector('.visio');
+    const grande = visio.querySelector('.visio-centre img');
+    const legende = visio.querySelector('.visio-bas');
+    const compteur = visio.querySelector('.compteur');
+    let actuelle = 0, dernierFocus = null;
+
+    function afficher(i) {
+      actuelle = (i + toutes.length) % toutes.length;
+      const p = toutes[actuelle];
+      grande.src = `photos/${p.photo}.jpg`;
+      grande.alt = p.legende;
+      legende.textContent = p.legende;
+      compteur.textContent = `${actuelle + 1} / ${toutes.length}`;
+      // précharge la suivante
+      new Image().src = `photos/${toutes[(actuelle + 1) % toutes.length].photo}.jpg`;
+    }
+    function ouvrir(i) {
+      dernierFocus = document.activeElement;
+      afficher(i);
+      visio.classList.add('ouverte');
+      document.body.style.overflow = 'hidden';
+      visio.querySelector('.fermer').focus();
+    }
+    function fermer() {
+      visio.classList.remove('ouverte');
+      document.body.style.overflow = '';
+      if (dernierFocus) dernierFocus.focus();
+    }
+
+    visio.querySelector('.fermer').addEventListener('click', fermer);
+    visio.querySelector('.prec').addEventListener('click', () => afficher(actuelle - 1));
+    visio.querySelector('.suiv').addEventListener('click', () => afficher(actuelle + 1));
+    visio.addEventListener('click', e => { if (e.target === visio || e.target.classList.contains('visio-centre')) fermer(); });
+    document.addEventListener('keydown', e => {
+      if (!visio.classList.contains('ouverte')) return;
+      if (e.key === 'Escape') fermer();
+      if (e.key === 'ArrowLeft') afficher(actuelle - 1);
+      if (e.key === 'ArrowRight') afficher(actuelle + 1);
+    });
+
+    // Glisser du doigt sur téléphone
+    let departX = null;
+    const zone = visio.querySelector('.visio-centre');
+    zone.addEventListener('touchstart', e => { departX = e.touches[0].clientX; }, { passive: true });
+    zone.addEventListener('touchend', e => {
+      if (departX === null) return;
+      const dx = e.changedTouches[0].clientX - departX;
+      if (Math.abs(dx) > 50) afficher(actuelle + (dx < 0 ? 1 : -1));
+      departX = null;
+    });
+
+    document.getElementById('annee').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
