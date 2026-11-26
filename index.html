@@ -340,7 +340,7 @@
        Remplace les 3 liens ci-dessous dans tout le fichier
        avec Ctrl+F / Cmd+F :
        - TON_PSEUDO_SNAP  → ton pseudo Snapchat
-       - LIEN_PAYPAL      → le lien de votre bouton de don PayPal
+       - Dons en ligne : à rebrancher (HelloAsso) une fois l'asso déclarée
        - unionducoeur@proton.me (déjà rempli)
        ========================================================= -->
 
@@ -358,7 +358,7 @@
         <a href="#apropos">Qui sommes-nous</a>
         <a href="#agir">Agir</a>
         <a href="#contact">Contact</a>
-        <a class="btn btn-orange" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">Faire un don</a>
+        <a class="btn btn-orange" href="#agir">Nous aider</a>
       </nav>
     </div>
   </header>
@@ -396,7 +396,7 @@
               Rejoindre une maraude
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="btn btn-ligne" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">Faire un don</a>
+            <a class="btn btn-ligne" href="#agir">Donner des produits</a>
           </div>
         </div>
 
@@ -525,7 +525,7 @@
             <h2>Prochaine maraude</h2>
             <p>La date sera annoncée très bientôt. Suivez-nous sur Snapchat pour être prévenu et rejoindre l'équipe.</p>
           </div>
-          <a class="btn btn-nuit" href="https://www.snapchat.com/add/TON_PSEUDO_SNAP" target="_blank" rel="noopener" data-lien="snap">Être prévenu</a>
+          <a class="btn btn-nuit" href="https://www.snapchat.com/add/t2a_940" target="_blank" rel="noopener" data-lien="snap">Être prévenu</a>
         </div>
       </div>
     </section>
@@ -570,14 +570,14 @@
 
           <div class="option vedette apparait">
             <span class="num">03</span>
-            <h3>Faire un don</h3>
-            <p>Chaque euro sert à acheter des repas, des produits d'hygiène et du matériel pour les maraudes.</p>
+            <h3>Dons en ligne</h3>
+            <p>Les dons en ligne arrivent très bientôt. En attendant, vos dons de produits et votre temps nous aident énormément.</p>
             <div class="bas">
-              <a class="btn btn-orange" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">
+              <span class="btn btn-orange" aria-disabled="true" style="opacity:.6;cursor:default;transform:none">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.5 1.1 4.4 2.6h2C13.9 6.1 15.4 5 17.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg>
-                Donner via PayPal
-              </a>
-              <span class="note">Paiement sécurisé, par carte ou compte PayPal.</span>
+                Bientôt disponible
+              </span>
+              <span class="note">Merci pour votre patience et votre générosité.</span>
             </div>
           </div>
         </div>
@@ -606,11 +606,11 @@
             </span>
             <span><b>Snapchat</b><small>Suivez nos maraudes au quotidien</small></span>
           </a>
-          <a class="canal" href="LIEN_PAYPAL" target="_blank" rel="noopener" data-lien="paypal">
+          <a class="canal" href="#agir">
             <span class="ic" style="background:#fdeedb;color:var(--orange-fonce)">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.3C1.1 8.3 3.2 5 6.6 5c2 0 3.5 1.1 4.4 2.6h2C13.9 6.1 15.4 5 17.4 5c3.4 0 5.5 3.3 4.1 6.7C19.5 16.4 12 21 12 21z"/></svg>
             </span>
-            <span><b>Soutenir l'association</b><small>Don en ligne via PayPal</small></span>
+            <span><b>Soutenir l'association</b><small>Dons en ligne bientôt disponibles</small></span>
           </a>
         </div>
       </div>
@@ -656,7 +656,7 @@
     let minuteur;
     document.querySelectorAll('[data-lien]').forEach(lien => {
       const href = lien.getAttribute('href');
-      if (href.includes('LIEN_PAYPAL') || href.includes('TON_PSEUDO_SNAP')) {
+      if (href.includes('t2a_940')) {
         lien.addEventListener('click', e => {
           e.preventDefault();
           toast.textContent = lien.dataset.lien === 'paypal'
