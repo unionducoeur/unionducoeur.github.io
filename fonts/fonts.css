@@ -1,0 +1,31 @@
+/* Polices hébergées directement sur le site (aucune connexion à Google).
+   Licence : SIL Open Font License 1.1 (voir les fichiers OFL). */
+@font-face {
+  font-family: "Fraunces";
+  src: url("Fraunces-600.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  /* Les mots en italique orange utilisent Instrument Serif Italic */
+  font-family: "Fraunces";
+  src: url("InstrumentSerif-Italic.woff") format("woff");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("InstrumentSans-Regular.woff") format("woff");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("InstrumentSans-Bold.woff") format("woff");
+  font-weight: 600 800;
+  font-style: normal;
+  font-display: swap;
+}
