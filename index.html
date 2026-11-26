@@ -175,6 +175,35 @@
     .entete-section p { color: var(--gris); font-size: 18px; }
     @media (max-width: 860px) { section { padding: 72px 0; } }
 
+    /* Parcours / chiffres */
+    .parcours { padding-bottom: 40px; }
+    .chiffres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 56px; }
+    .chiffre { background: var(--blanc); border-radius: var(--rayon); padding: 30px 28px; border: 1px solid rgba(14,39,64,.07); }
+    .chiffre b { display: block; font: 600 clamp(48px, 5.4vw, 68px)/1 var(--serif); color: var(--nuit); letter-spacing: -0.02em; }
+    .chiffre:first-child b { color: var(--orange-fonce); }
+    .chiffre span { display: block; margin-top: 10px; color: var(--gris); font-size: 16.5px; }
+    .frise { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
+    .frise::before { content: ""; position: absolute; top: 9px; left: 10px; width: calc(33.33% - 10px); height: 2px; background: var(--ocean); opacity: .35; }
+    .frise::after { content: ""; position: absolute; top: 9px; left: 33.33%; width: 33.33%; height: 2px;
+      background: repeating-linear-gradient(90deg, var(--orange) 0 8px, transparent 8px 16px); opacity: .7; }
+    .frise li { position: relative; padding: 34px 24px 0 0; }
+    .frise li::before { content: ""; position: absolute; top: 0; left: 0; width: 20px; height: 20px; border-radius: 50%;
+      background: var(--nuit); box-shadow: 0 0 0 6px var(--papier); }
+    .frise li.avenir::before { background: var(--papier); border: 3px dashed var(--orange); }
+    .frise .quand { font-size: 13.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ocean); }
+    .frise li.avenir .quand { color: var(--orange-fonce); }
+    .frise h3 { font-size: 22px; margin: 6px 0 4px; }
+    .frise p { color: var(--gris); font-size: 16px; }
+    @media (max-width: 760px) {
+      .chiffres { grid-template-columns: 1fr; gap: 12px; margin-bottom: 44px; }
+      .chiffre { display: flex; align-items: baseline; gap: 16px; padding: 22px 24px; }
+      .chiffre span { margin: 0; }
+      .frise { grid-template-columns: 1fr; gap: 26px; }
+      .frise::before { top: 10px; bottom: 10px; left: 9px; width: 2px; height: auto; }
+      .frise::after { display: none; }
+      .frise li { padding: 0 0 0 44px; }
+    }
+
     /* Actions */
     .cartes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
     .carte {
@@ -255,7 +284,7 @@
       background: var(--nuit); color: var(--blanc); border-radius: 22px;
       width: 120px; height: 120px; display: grid; place-content: center; text-align: center;
     }
-    .rdv .date b { display: block; font: 700 42px/1 var(--serif); }
+    .rdv .date b { display: block; font: 700 34px/1 var(--serif); margin-bottom: 6px; }
     .rdv .date small { font-size: 14px; text-transform: uppercase; letter-spacing: .1em; opacity: .8; }
     .rdv h2 { font-size: clamp(26px, 3vw, 36px); margin-bottom: 8px; }
     .rdv p { font-size: 17px; }
@@ -428,6 +457,43 @@
       </svg>
     </section>
 
+    <!-- ================= NOTRE PARCOURS =================
+         À MODIFIER après chaque maraude : les chiffres et la frise.
+    ==================================================== -->
+    <section class="parcours">
+      <div class="wrap">
+        <div class="entete-section apparait">
+          <span class="surtitre">Notre parcours</span>
+          <h2>Déjà <em>350 repas</em> partagés.</h2>
+          <p>Deux maraudes, et une équipe qui grandit à chaque fois.</p>
+        </div>
+
+        <div class="chiffres">
+          <div class="chiffre apparait"><b>350</b><span>repas distribués</span></div>
+          <div class="chiffre apparait"><b>2</b><span>maraudes organisées</span></div>
+          <div class="chiffre apparait"><b>2024</b><span>notre première sortie</span></div>
+        </div>
+
+        <ol class="frise">
+          <li class="apparait">
+            <span class="quand">Avril 2024</span>
+            <h3>Première maraude</h3>
+            <p>150 repas distribués. Le début de l'aventure.</p>
+          </li>
+          <li class="apparait">
+            <span class="quand">Mars 2026</span>
+            <h3>Deuxième maraude</h3>
+            <p>200 repas distribués, avec une équipe plus nombreuse.</p>
+          </li>
+          <li class="avenir apparait">
+            <span class="quand">Janvier 2027</span>
+            <h3>Prochaine maraude</h3>
+            <p>La date exacte arrive bientôt. Et si vous étiez de l'équipe ?</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- ================= NOS ACTIONS ================= -->
     <section id="actions">
       <div class="wrap">
@@ -534,12 +600,12 @@
       <div class="wrap">
         <div class="rdv apparait">
           <div class="date">
-            <b>??</b>
-            <small>Bientôt</small>
+            <b>Janv.</b>
+            <small>2027</small>
           </div>
           <div>
             <h2>Prochaine maraude</h2>
-            <p>La date sera annoncée très bientôt. Suivez-nous sur Snapchat pour être prévenu et rejoindre l'équipe.</p>
+            <p>Notre troisième maraude aura lieu en janvier 2027. Suivez-nous sur Snapchat pour connaître la date exacte et rejoindre l'équipe.</p>
           </div>
           <a class="btn btn-nuit" href="https://www.snapchat.com/add/t2a_940" target="_blank" rel="noopener" data-lien="snap">Être prévenu</a>
         </div>
